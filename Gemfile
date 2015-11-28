@@ -26,6 +26,8 @@ gem 'devise'
 # Use bower to manage javascript libraries
 gem 'bower-rails'
 
+gem "paperclip", "~> 4.3"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
