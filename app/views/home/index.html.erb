@@ -1,0 +1,23 @@
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <h2>Welcome to MyMoviesApp</h2>
+    <p>A cool way to manage your films' library! Get started today!</p>
+    <p>
+      <%=link_to 'Sign up »', new_user_registration_path, class: 'btn btn-primary btn-lg'%>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-12">
+      <%= render partial: 'devise/shared/login' %>
+    </div>
+
+  </div>
+
+  <hr>
+
+</div> <!-- /container -->

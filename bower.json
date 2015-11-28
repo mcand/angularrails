@@ -9,7 +9,7 @@
   "vendor": {
     "name": "bower-rails generated vendor assets",
     "dependencies": {
-      "angular-material" : "git://github.com/angular/bower-material.git"
+      "bootstrap-sass-official" : "git://github.com/twbs/bootstrap-sass.git"
       // "three.js"    : "https://raw.github.com/mrdoob/three.js/master/build/three.js"
 
     }
