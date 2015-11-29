@@ -9,7 +9,12 @@
   "vendor": {
     "name": "bower-rails generated vendor assets",
     "dependencies": {
-      "bootstrap-sass-official" : "git://github.com/twbs/bootstrap-sass.git"
+      "bootstrap-sass-official" : "git://github.com/twbs/bootstrap-sass.git",
+      "angular" : "git://github.com/angular/bower-angular.git",
+      "angular-mocks" : "git://github.com/angular/bower-angular-mocks.git",
+      "angular-route" : "git://github.com/angular/bower-angular-route.git",
+      "angular-resource" : "git://github.com/angular/bower-angular-resource.git",
+      "angular-messages" : "git://github.com/angular/bower-angular-messages.git"
       // "three.js"    : "https://raw.github.com/mrdoob/three.js/master/build/three.js"
 
     }
