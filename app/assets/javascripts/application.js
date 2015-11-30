@@ -12,9 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require 'bootstrap-sass-official'
 //= require angular
 //= require angular-route
 //= require angular-resource
 //= require angular-messages
-//= require 'bootstrap-sass-official'
+//= require angular-rails-templates
+//= require movies_app
+//= require_tree ./templates
 //= require_tree .
