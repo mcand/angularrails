@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources 'dashboard', :only => [:index]
 
+  resources 'categories'
+
   # You can have the root of your site routed with "root"
    root 'home#index'
 
