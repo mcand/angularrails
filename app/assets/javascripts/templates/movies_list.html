@@ -2,8 +2,7 @@
   <div class="panel">
     <img class="pic img-circle" src="http://placehold.it/120x120" alt="...">
     <div class="name"><small>{{user}}</small></div>
-    <a href="#" class="btn btn-xs btn-primary pull-right" style="margin:10px;"><span class="glyphicon glyphicon-picture"></span> Change cover</a>
-  </div>
+    </div>
   <br><br><br>
   <ul class="nav nav-tabs" id="myTab">
     <li class="active"><a href="#inbox" data-toggle="tab"><i class="fa fa-envelope-o"></i> All Movies</a></li>
@@ -14,13 +13,24 @@
     <div class="tab-pane active" id="inbox">
       <div ng-repeat="movie in movies">
         <a type="button" data-toggle="collapse" data-target="#a1">
-          <div class="btn-toolbar well well-sm" role="toolbar"  style="margin:0px;">
+          <div class="btn-toolbar well-md well well-sm" role="toolbar"  style="margin:0px;">
             <div class="btn-group"><input type="checkbox"></div>
-            <div class="btn-group col-md-3">{{movie.id}}</div>
-            <div class="btn-group col-md-8"><b>{{movie.name}}</b> <div class="pull-right"><i class="glyphicon glyphicon-time"></i> 12:10 PM</div> </div>
+            <div class="btn-group col-md-1">{{movie.id}}</div>
+            <div class="btn-group col-md-3">
+              <b ng-click="viewDetails(movie)">{{movie.name}}</b>
+            </div>
+            <div class="btn-group col-md-3">
+              {{movie.description}}
+            </div>
+            <div class="btn-group col-md-2">
+              {{movie.created_at | date}}
+            </div>
+            <div class="btn-group col-md-2">
+              <button type="button" class="pull-right btn btn-danger" ng-click="deleteMovie(movie)" name="button">Delete</button>
+            </div>
+
           </div>
         </a>
-        <div id="a1" class="collapse out well">This is the message body1</div>
       </div>
       <br>
       <button class="btn btn-primary btn-xs"><i class="fa fa-check-square-o"></i> Delete Checked Item's</button>
