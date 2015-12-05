@@ -1,0 +1,48 @@
+<div class="col-md-10">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3 class="panel-title">View/Edit Movie</h3>
+    </div>
+    <div class="panel-body">
+      <p>
+        Edit movie filling the options below:
+      </p>
+      <div class="row">
+        <div class="col-md-6">
+          <form novalidate name="forme">
+            <div class="form-group has-feedback" ng-class="{ 'has-error': form.name.$invalid && form.name.$dirty,
+                'has-success': form.name.$valid && form.name.$touched }">
+              <label for="name">Name</label>
+              <input type="text" name="name" class="form-control"  ng-model="movie.name" required>
+              <p class="help-block" ng-class="form.name.$invalid" ng-messages="form.name.$error">
+                <span ng-messsage="required">Name is required</span>
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea name="description" class="form-control" ng-model="movie.description" required/>
+              <p class="help-block" ng-class="form.name.$invalid" ng-messages="form.name.$error">
+                <span ng-messsage="required">Description is required</span>
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="category">Category</label>
+              <select name="category" class="form-control" >
+                <option ng-repeat="category in categories" value="{{category.id}}">{{category.name}}</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input type="file" name="image" value="">
+            </div>
+            <br>
+            <h1>livro {{name}}</h1>
+
+            <button class="btn btn-lg btn-success" type="button" name="button" ng-click="save()" ng-disabled="form.$invalid || form.$pristine">Edit Movie</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
