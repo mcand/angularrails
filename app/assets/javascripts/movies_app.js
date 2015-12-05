@@ -13,6 +13,9 @@
       }).when("/new", {
         controller: "MoviesController",
         templateUrl: "create_movies.html"
+      }).when("/:id", {
+        controller: "MoviesController",
+        templateUrl: "movie_details.html"
       });
     }
   ]);
