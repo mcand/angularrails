@@ -1,9 +1,15 @@
 <div ng-app="movies" class="container-fluid">
+	<aside class="alert alert-success alert-dismissible text-center" ng-show="showSuccessAlert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		{{successTextAlert}}
+	</aside>
 	<div id="name" class="hidden"><%= "#{current_user.firstname.capitalize} #{current_user.lastname.capitalize}" %></div>
 	<div class="row well" ng-controller="MoviesController">
 		<div class="col-md-2">
 	    <ul class="nav nav-pills nav-stacked well">
-        <li  class="active"><a ng-click="listMovies()" href=""><i class="fa fa-envelope"></i> Home </a></li>
+        <li class="active"><a ng-click="listMovies()" href=""><i class="fa fa-envelope"></i> Home </a></li>
         <li><a href="" ng-click="createMovie()"><i class="fa fa-home"></i> Create Movie </a></li>
         <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
       </ul>
@@ -11,3 +17,10 @@
 		<div ng-view></div>
   </div>
 </div>
+
+<script type="text/javascript">
+	$('li a').on('click', function(){
+		$('ul li.active').removeClass('active');
+		$(this).parent().addClass('active');
+	});
+</script>
