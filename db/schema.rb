@@ -11,15 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151130045555) do
+ActiveRecord::Schema.define(version: 20151204051125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "attachments", force: :cascade do |t|
+    t.integer  "film_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+  end
+
+  add_index "attachments", ["film_id"], name: "index_attachments_on_film_id", using: :btree
+
   create_table "categories", force: :cascade do |t|
-    t.string   "name",       null: false
+    t.string   "name"
+    t.integer  "film_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  add_index "categories", ["film_id"], name: "index_categories_on_film_id", using: :btree
+
+  create_table "films", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "category_id"
+    t.integer  "attachment_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -46,4 +70,6 @@ ActiveRecord::Schema.define(version: 20151130045555) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "attachments", "films"
+  add_foreign_key "categories", "films"
 end
