@@ -13,7 +13,7 @@
     <div class="tab-pane active" id="inbox">
       <div ng-repeat="movie in movies">
         <a type="button" data-toggle="collapse" data-target="#a1">
-          <div class="btn-toolbar well-md well well-sm" role="toolbar"  style="margin:0px;">
+          <div class="btn-toolbar well-md well well-sm" role="toolbar" ng-controller="MoviesController"  style="margin:0px;">
             <div class="btn-group"><input type="checkbox"></div>
             <div class="btn-group col-md-1">{{movie.id}}</div>
             <div class="btn-group col-md-3">

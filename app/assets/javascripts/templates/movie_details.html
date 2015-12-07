@@ -7,9 +7,9 @@
       <p>
         Edit movie filling the options below:
       </p>
-      <div class="row">
+      <div class="row" ng-controller="MovieDetailController">
         <div class="col-md-6">
-          <form novalidate name="forme">
+          <form novalidate name="form">
             <div class="form-group has-feedback" ng-class="{ 'has-error': form.name.$invalid && form.name.$dirty,
                 'has-success': form.name.$valid && form.name.$touched }">
               <label for="name">Name</label>
@@ -36,7 +36,6 @@
               <input type="file" name="image" value="">
             </div>
             <br>
-            <h1>livro {{name}}</h1>
 
             <button class="btn btn-lg btn-success" type="button" name="button" ng-click="save()" ng-disabled="form.$invalid || form.$pristine">Edit Movie</button>
           </form>

@@ -14,7 +14,7 @@
         controller: "MoviesController",
         templateUrl: "create_movies.html"
       }).when("/:id", {
-        controller: "MoviesController",
+        controller: "MovieDetailController",
         templateUrl: "movie_details.html"
       });
     }

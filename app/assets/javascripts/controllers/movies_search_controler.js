@@ -15,7 +15,7 @@ app.factory('Film', ['$resource', function($resource){
  });
 }]);
 
-app.controller('MoviesController', ['$scope', '$http', '$location', '$resource', '$routeParams', 'Films', 'Film', function($scope, $http, $location, $resource, $routeParams, Films, Film){
+app.controller('MoviesController', ['$scope', '$http', '$location', '$resource', '$route', '$routeParams', 'Films', 'Film', function($scope, $http, $location, $resource, $route, $routeParams, Films, Film){
 
   $scope.movies = Films.query();
 
@@ -52,25 +52,45 @@ app.controller('MoviesController', ['$scope', '$http', '$location', '$resource',
   $scope.deleteMovie = function(movie){
     Film.delete(movie);
     $scope.movies = Films.query();
+    $route.reload();
   };
 
   $scope.viewDetails = function(movie){
-    $scope.name="ola";
-    alert(movie.id);
     $location.path("/" + movie.id);
-    var Movie = $resource('films/:filmId'+'.json', {filmId: '@id'});
-    $scope.movie = Movie.get({filmId: movie.id});
-    $scope.movie.$promise.then(
-      function(response){
-        $scope.$apply();
-        $scope.movie = response;
-
-        console.log("filme e: " + response.name);
-      },
-      function(error){
-        console.log("request failed");
-      }
-    );
   };
+  // $scope.viewDetails = function(movie){
+  //   $scope.name="ola";
+  //     alert(movie.id);
+  //     $location.path("/" + movie.id);
+  //     var Movie = $resource('films/:filmId'+'.json', {filmId: '@id'});
+  //     $scope.movie = Movie.get({filmId: movie.id});
+  //     $scope.movie.$promise.then(
+  //       function(response){
+  //         $scope.$apply();
+  //         $scope.movie = response;
+  //
+  //         console.log("filme e: " + response.name);
+  //       },
+  //       function(error){
+  //         console.log("request failed");
+  //       }
+  //     );
+  // };
 
+}]);
+
+
+app.controller('MovieDetailController', ['$scope', '$http', '$location', '$resource', '$routeParams', 'Films', 'Film', function($scope, $http, $location, $resource, $routeParams, Films, Film){
+  var movieId = $routeParams.id;
+
+  var Movie = $resource('films/:filmId'+'.json', {filmId: '@id'});
+  $scope.movie = Movie.get({filmId:movieId});
+  $scope.movie.$promise.then(
+    function(response){
+      $scope.movie = response;
+    },
+    function(error){
+      console.log("request failed");
+    }
+  );
 }]);
