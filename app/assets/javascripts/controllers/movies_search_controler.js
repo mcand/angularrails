@@ -2,16 +2,16 @@ var app = angular.module('movies');
 
 app.factory('Films', ['$resource',function($resource){
  return $resource('/films.json', {},{
- query: { method: 'GET', isArray: true },
- create: { method: 'POST' }
+   query: { method: 'GET', isArray: true },
+   create: { method: 'POST' }
  })
 }]);
 
 app.factory('Film', ['$resource', function($resource){
- return $resource('films/:id.json', {}, {
- show: {method: 'GET' },
- update: { method: 'PUT', params: {id: '@id'} },
- delete: { method: 'DELETE', params: {id: '@id'} }
+ return $resource('/films/:id.json', {}, {
+   show: {method: 'GET' },
+   update: { method: 'PUT', params: {id: '@id'} },
+   delete: { method: 'DELETE', params: {id: '@id'} }
  });
 }]);
 
@@ -58,34 +58,15 @@ app.controller('MoviesController', ['$scope', '$http', '$location', '$resource',
   $scope.viewDetails = function(movie){
     $location.path("/" + movie.id);
   };
-  // $scope.viewDetails = function(movie){
-  //   $scope.name="ola";
-  //     alert(movie.id);
-  //     $location.path("/" + movie.id);
-  //     var Movie = $resource('films/:filmId'+'.json', {filmId: '@id'});
-  //     $scope.movie = Movie.get({filmId: movie.id});
-  //     $scope.movie.$promise.then(
-  //       function(response){
-  //         $scope.$apply();
-  //         $scope.movie = response;
-  //
-  //         console.log("filme e: " + response.name);
-  //       },
-  //       function(error){
-  //         console.log("request failed");
-  //       }
-  //     );
-  // };
 
 }]);
 
-
 app.controller('MovieDetailController', ['$scope', '$http', '$location', '$resource', '$routeParams', 'Films', 'Film', function($scope, $http, $location, $resource, $routeParams, Films, Film){
   var movieId = $routeParams.id;
+  $scope.moviedId = $routeParams.id;
 
-  var Movie = $resource('films/:filmId'+'.json', {filmId: '@id'});
-  $scope.movie = Movie.get({filmId:movieId});
-  $scope.movie.$promise.then(
+  var Movie = $resource('/films/:filmId.json', {filmId: '@film_id'}, {"save": {"method": 'PUT'}});
+  Movie.get({filmId:movieId}).$promise.then(
     function(response){
       $scope.movie = response;
     },
@@ -93,4 +74,13 @@ app.controller('MovieDetailController', ['$scope', '$http', '$location', '$resou
       console.log("request failed");
     }
   );
+
+  $scope.save = function(movie){
+    alert(movieId);
+    Film.update($scope.movie, function(){
+      $location.path('/');
+    }, function(error){
+      console.log(error);
+    });
+  };
 }]);

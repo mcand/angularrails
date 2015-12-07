@@ -38,6 +38,11 @@ class FilmsController < ApplicationController
   end
 
   def update
+    Rails.logger.info("ESTA CHAMANDO UPDATE #{params}")
+    @film.update(film_params)
+    respond_to do |format|
+      format.json { head :no_content }
+    end
   end
 
   def destroy

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   skip_before_action :verify_authenticity_token, if: :json_request?
   before_filter :configure_permitted_parameters, if: :devise_controller?
   helper_method :resource_name, :resource, :devise_mapping
+  respond_to :html, :json
+
 
   def resource_name
     :user
